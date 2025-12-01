@@ -5,8 +5,9 @@ from langchain_community.document_loaders import (
     Docx2txtLoader)
 import tempfile
 import os
+from typing import List,Any
 
-def load_documents(uploaded_file):
+def load_documents(uploaded_file)->List[Any]:
     """
     Data Loadder for all type of uploaded Documents PPTX,Docs,TXT,PDF.
     Return a list of langchain Document object.
@@ -56,7 +57,7 @@ def load_documents(uploaded_file):
         os.remove(tmp_path)
 
     print(f"Retuning the docs length: {len(docs)}")
-    
+
     return docs
 
 if __name__=="__main__":
