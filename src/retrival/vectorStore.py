@@ -4,7 +4,7 @@ import numpy as np
 import pickle
 from typing import List, Any
 from sentence_transformers import SentenceTransformer
-from src.embedding import EmbeddingPipeLine
+from src.retrival.embedding import EmbeddingPipeLine
 
 class FaissVectorStore:
     def __init__(self, persist_dir: str = "faiss_store", embedding_model: str = "all-MiniLM-L6-v2", chunk_size: int = 1000, chunk_overlap: int = 200):
@@ -74,13 +74,10 @@ class FaissVectorStore:
         return self.search(query_emb, top_k=top_k)
     
 if __name__=="__main__":
-    from src.dataLoader import load_documents
+    from src.retrival.dataLoader import load_documents
     import glob
     sample_files = [
        open(r"Rich-Dad-Poor-Dad.pdf","rb"),
-    #    open(r"journal_editingfinal.docx","rb"),
-    #    open(r"Project-PPT-model.pptx","rb"),
-    #    open(r"healthcare_report.txt","rb")
     ]
     docs=load_documents(sample_files)
     store = FaissVectorStore("faiss_store")

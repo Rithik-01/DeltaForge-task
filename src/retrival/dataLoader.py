@@ -1,11 +1,14 @@
+from typing import List,Any
+import os
+import tempfile
+
 from langchain_community.document_loaders import (
     PyMuPDFLoader,
     UnstructuredPowerPointLoader,
     TextLoader,
-    Docx2txtLoader)
-import tempfile
-import os
-from typing import List,Any
+    Docx2txtLoader
+    )
+
 
 def load_documents(uploaded_file)->List[Any]:
     """
@@ -63,10 +66,7 @@ def load_documents(uploaded_file)->List[Any]:
 if __name__=="__main__":
     import glob
     sample_files = [
-       open(r"Rich-Dad-Poor-Dad.pdf","rb"),
-       open(r"journal_editingfinal.docx","rb"),
-       open(r"Project-PPT-model.pptx","rb"),
-       open(r"healthcare_report.txt","rb")
+       open(r"Rich-Dad-Poor-Dad.pdf","rb")
     ]
     docs=load_documents(sample_files)
     print(f"the lenght of the docs {len(docs)}")
