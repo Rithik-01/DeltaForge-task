@@ -1,0 +1,11 @@
+Functinality:
+    -summarize the notes and documents
+    -quizze on the desired topic 
+    -Q&A RAG
+
+File:
+    -src/dataloader: which load the data from all format of file uploaded by the user.
+    -src/vector store: which store the text data as vectors in local faise.index
+    -src/text retrival: which retrive the relevant text from the vector DB based on the query.
+    -src/summarizing agent : which use text retrival reAct agent to summarize the topic.
+    -src/quizze agent :  which use text retrival to get relavent text and generate quizze .

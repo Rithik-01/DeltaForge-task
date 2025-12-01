@@ -1,0 +1,13 @@
+[project]
+name = "smart-campus-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "docx2txt>=0.9",
+    "langchain-community>=0.4.1",
+    "pymupdf>=1.26.6",
+    "python-pptx>=1.0.2",
+    "unstructured>=0.18.21",
+]
