@@ -1,10 +1,8 @@
-import os
 from src.retrival.vectorStore import FaissVectorStore
-from src.retrival.dataLoader import load_documents
+
 class RAGSearch:
     def __init__(self, persist_dir: str = "faiss_store", embedding_model: str = "all-MiniLM-L6-v2"):
         self.vectorstore = FaissVectorStore(persist_dir, embedding_model)
-        # Load or build vectorstore
         self.vectorstore.load()
         print("[INFO] VDB is loaded")
 
@@ -16,3 +14,8 @@ class RAGSearch:
             return "No relevant documents found."
         return context
        
+if __name__=="__main__":
+    search=RAGSearch()
+    result=search.search("how are te cast in this story?")
+    print(result)
+

@@ -7,7 +7,7 @@ from sentence_transformers import SentenceTransformer
 from src.retrival.embedding import EmbeddingPipeLine
 
 class FaissVectorStore:
-    def __init__(self, persist_dir: str = "faiss_store", embedding_model: str = "all-MiniLM-L6-v2", chunk_size: int = 1000, chunk_overlap: int = 200):
+    def __init__(self, persist_dir: str = "faiss_store", embedding_model: str = "all-MiniLM-L6-v2", chunk_size: int = 400, chunk_overlap: int = 200):
         self.persist_dir = persist_dir
         os.makedirs(self.persist_dir, exist_ok=True)
         self.index = None
@@ -60,7 +60,7 @@ class FaissVectorStore:
             self.metadata = pickle.load(f)
         print(f"[INFO] Loaded Faiss index and metadata from {self.persist_dir}")
 
-    def search(self, query_embedding: np.ndarray, top_k: int = 5):
+    def search(self, query_embedding: np.ndarray, top_k: int = 10):
         D, I = self.index.search(query_embedding, top_k)
         results = []
         for idx, dist in zip(I[0], D[0]):
@@ -68,7 +68,7 @@ class FaissVectorStore:
             results.append({"index": idx, "distance": dist, "metadata": meta})
         return results
     
-    def query(self, query_text: str, top_k: int = 5):
+    def query(self, query_text: str, top_k: int = 10):
         print(f"[INFO] Querying vector store for: '{query_text}'")
         query_emb = self.model.encode([query_text]).astype('float32')
         return self.search(query_emb, top_k=top_k)
@@ -77,10 +77,10 @@ if __name__=="__main__":
     from src.retrival.dataLoader import load_documents
     import glob
     sample_files = [
-       open(r"Rich-Dad-Poor-Dad.pdf","rb"),
+       open(r"Hands-On_Large_Language_Models_-_Jay_Alammar.pdf","rb"),
     ]
     docs=load_documents(sample_files)
     store = FaissVectorStore("faiss_store")
     store.build_from_documents(docs)
     store.load()
-    print(store.query("What is overall accuracy achieved ?", top_k=3))
+    print(store.query("What is overall accuracy achieved ?", top_k=10))
