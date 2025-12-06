@@ -77,7 +77,7 @@ if __name__=="__main__":
     from src.retrival.dataLoader import load_documents
     import glob
     sample_files = [
-       open(r"Hands-On_Large_Language_Models_-_Jay_Alammar.pdf","rb"),
+       open(r"class_12_Physics.pdf","rb"),
     ]
     docs=load_documents(sample_files)
     store = FaissVectorStore("faiss_store")

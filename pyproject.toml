@@ -11,10 +11,13 @@ dependencies = [
     "groq>=0.36.0",
     "langchain>=1.1.0",
     "langchain-community>=0.4.1",
+    "langchain-core>=1.1.0",
     "langchain-text-splitters>=1.0.0",
     "langgraph>=1.0.4",
+    "markdownify>=1.2.2",
     "pymupdf>=1.26.6",
     "python-pptx>=1.0.2",
     "sentence-transformers>=5.1.2",
+    "tiktoken>=0.12.0",
     "unstructured>=0.18.21",
 ]

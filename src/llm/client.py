@@ -25,7 +25,7 @@ def ask_groq(prompt:str) -> str:
         messages=[
             {"role": "user", "content": prompt}
         ],
-        temperature=0.5,
+        temperature=0.1,
         max_tokens=1024
     )
     return response.choices[0].message.content.strip()
